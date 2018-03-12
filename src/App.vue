@@ -1,12 +1,12 @@
 <template>
   <div id="app">
-    <app-header>loading...</app-header>
+    <app-header @controls="menuStatusChange()">loading...</app-header>
     <div class="appBody">
-      <div class="leftContent">
+      <div :class="{leftContent:true,showContent: showtabs}">
         <app-sidebar>loading...</app-sidebar>
       </div>
       <div class="rightContent">
-        123123
+        <app-content>loading...</app-content>
       </div>
     </div>
   </div>
@@ -15,16 +15,28 @@
 <script>
   import AppHeader from './components/AppHeader.vue';
   import AppSidebar from './components/AppSidebar.vue';
+  import AppContent from './components/AppContent.vue';
 export default {
   name: 'App',
   components:{
-      AppHeader,
-      AppSidebar
+    AppHeader,
+    AppSidebar,
+    AppContent
+  },
+  data(){
+    return{
+      showtabs:false
+    }
+  },
+  methods:{
+    menuStatusChange(){
+        this.showtabs = !this.showtabs
+    }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
   *{
     padding:0;
     margin:0;
@@ -37,6 +49,21 @@ export default {
   /*主题内容样式*/
   .appBody{
     display: flex;
+    flex-direction: row;
+    position: absolute;
+    top:0;
     width:100%;
+
+    .leftContent{
+      width:0vw;
+      transition: all ease-in .3s;
+    }
+    .showContent{
+      width:20vw;
+    }
+    .rightContent{
+      flex-grow: 1;
+    }
+
   }
 </style>

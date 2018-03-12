@@ -3,12 +3,16 @@
     <h1>
       文档标题
     </h1>
-    <a class="sideBtn"><span></span></a>
+    <a class="sideBtn" @click="showSideBar()"><span></span></a>
   </header>
 </template>
 <script>
   export default {
-
+    methods:{
+      showSideBar(){
+          this.$emit('controls')
+      }
+    }
   }
 </script>
 <style lang="scss">
@@ -35,7 +39,7 @@
         height: 4px;
         content: '';
         background: #fff;
-        transition: all .3s;
+        transition: all .1s;
       }
 
       span{

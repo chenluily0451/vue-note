@@ -15,11 +15,8 @@
 <style lang="scss">
   .sidebar{
     background: rgba(0,0,0,0.5);
-    width:20%;
-    height:100%;
-    position: absolute;
-    left:0;
-    top:0;
+    width:100%;
+    min-height:100vh;
     .mainMenu{
       padding-top: 100px;
       padding-left: 20px;
