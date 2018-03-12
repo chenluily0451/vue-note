@@ -3,7 +3,8 @@
     <app-header @controls="menuStatusChange()">loading...</app-header>
     <div class="appBody">
       <div :class="['leftContent',{showContent: showtabs}]">
-        <app-sidebar :btnShowStatus="showtabs">loading...</app-sidebar>
+        <app-sidebar :btnShowStatus="showtabs" @changeTheme ="getTheme()" v-show="!showTheme">loading...</app-sidebar>
+        <app-theme v-show="showTheme">loading...</app-theme>
       </div>
       <div class="rightContent">
         <app-content>loading...</app-content>
@@ -13,25 +14,31 @@
 </template>
 
 <script>
-  import AppHeader from './components/AppHeader.vue';
-  import AppSidebar from './components/AppSidebar.vue';
-  import AppContent from './components/AppContent.vue';
+  import AppHeader from './components/AppHeader.vue'
+  import AppSidebar from './components/AppSidebar.vue'
+  import AppContent from './components/AppContent.vue'
+  import AppTheme from './components/AppTheme.vue'
 export default {
   name: 'App',
   components:{
     AppHeader,
     AppSidebar,
-    AppContent
+    AppContent,
+    AppTheme
   },
   data(){
     return{
-      showtabs:false
+      showtabs:false,
+      showTheme:false
     }
   },
 
   methods:{
     menuStatusChange(){
         this.showtabs = !this.showtabs
+    },
+    getTheme(){
+      this.showTheme = true
     }
   }
 }
@@ -58,6 +65,7 @@ export default {
     .leftContent{
       width:0vw;
       transition: all ease-in .3s;
+      background: rgba(0,0,0,0.5);
     }
     .showContent{
       width:20vw;

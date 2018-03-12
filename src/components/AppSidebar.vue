@@ -2,13 +2,13 @@
   <div class="sidebar">
     <ul class="mainMenu">
       <li :class="{'delayshow':btnShowStatus}">
-        <a href="javascript:void(0)" class="">切换主题{{btnShowStatus}}</a>
+        <a href="javascript:void(0)" @click="changeTheme()">切换主题</a>
       </li>
       <li>
-        <a href="javascript:void(0)" class="">切换主题</a>
+        <a href="javascript:void(0)">切换主题</a>
       </li>
       <li>
-        <a href="javascript:void(0)" class="">切换主题</a>
+        <a href="javascript:void(0)">切换主题</a>
       </li>
 
     </ul>
@@ -25,10 +25,11 @@
       btnShowStatus:function(e){
         var i= 0,
             j= document.querySelectorAll(".mainMenu li").length || 0,
-            k
+            k,
+            timer
 
         if(this.btnShowStatus){
-          var timer = setInterval(function(){
+           timer = setInterval(function(){
             if(i<j){
               document.querySelectorAll(".mainMenu li")[i].setAttribute('class','delayshow')
               i++
@@ -36,21 +37,25 @@
               i=0
               clearInterval(timer)
             }
-          },300)
+          },150)
         }else{
             for(k=0;k<j;k++){
-              document.querySelectorAll(".mainMenu li")[k].setAttribute('class','')
+              document.querySelectorAll(".mainMenu li")[k].removeAttribute('class')
             }
 
         }
       }
 
+    },
+    methods:{
+      changeTheme() {
+        this.$emit('changeTheme')
+      }
     }
   }
 </script>
 <style lang="scss">
   .sidebar{
-    background: rgba(0,0,0,0.5);
     width:100%;
     min-height:100vh;
     .mainMenu{
@@ -61,6 +66,7 @@
         margin-bottom: 30px;
         transition: all ease .3s;
         opacity: 0;
+        overflow: hidden;
         a{
           display: inline-block;
           width:100%;
