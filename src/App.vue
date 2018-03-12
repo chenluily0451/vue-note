@@ -2,8 +2,8 @@
   <div id="app">
     <app-header @controls="menuStatusChange()">loading...</app-header>
     <div class="appBody">
-      <div :class="{leftContent:true,showContent: showtabs}">
-        <app-sidebar>loading...</app-sidebar>
+      <div :class="['leftContent',{showContent: showtabs}]">
+        <app-sidebar :btnShowStatus="showtabs">loading...</app-sidebar>
       </div>
       <div class="rightContent">
         <app-content>loading...</app-content>
@@ -28,6 +28,7 @@ export default {
       showtabs:false
     }
   },
+
   methods:{
     menuStatusChange(){
         this.showtabs = !this.showtabs

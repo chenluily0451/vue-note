@@ -26,7 +26,7 @@
 
     .sideBtn{
       position: absolute;
-      left: 10px;
+      left: 30px;
       top: 35px;
       width: 30px;
       height: 26px;
