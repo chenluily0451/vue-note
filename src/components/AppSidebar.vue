@@ -21,9 +21,30 @@
     },
     props:['btnShowStatus'],
     watch:{
-      btnShowStatus:function(){
 
+      btnShowStatus:function(e){
+        var i= 0,
+            j= document.querySelectorAll(".mainMenu li").length || 0,
+            k
+
+        if(this.btnShowStatus){
+          var timer = setInterval(function(){
+            if(i<j){
+              document.querySelectorAll(".mainMenu li")[i].setAttribute('class','delayshow')
+              i++
+            }else{
+              i=0
+              clearInterval(timer)
+            }
+          },300)
+        }else{
+            for(k=0;k<j;k++){
+              document.querySelectorAll(".mainMenu li")[k].setAttribute('class','')
+            }
+
+        }
       }
+
     }
   }
 </script>
