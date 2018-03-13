@@ -59,7 +59,7 @@ export default {
   .defaultColor{
     /*background: #00b0fc;*/
   }
-  ul,li,a{list-style: none;text-decoration: none}
+  ul,li,a{list-style: none;text-decoration: none;margin:0;padding:0;}
 
   /*主题内容样式*/
   .appBody{

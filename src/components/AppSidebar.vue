@@ -73,7 +73,6 @@
       padding-left: 20px;
       padding-right: 20px;
       li{
-        margin-bottom: 30px;
         transition: all ease .3s;
         opacity: 0;
         overflow: hidden;
@@ -86,6 +85,7 @@
           text-align: center;
           color: #fff;
           font-size: 24px;
+          margin-bottom: 30px;
 
           &:hover{
             opacity: .8;
