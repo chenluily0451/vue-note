@@ -1,14 +1,14 @@
 <template>
   <div class="sidebar">
     <ul class="mainMenu">
-      <li :class="{'delayshow':btnShowStatus}">
-        <a href="javascript:void(0)" @click="changeTheme()">切换主题</a>
+      <li>
+        <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">切换主题</a>
       </li>
       <li>
-        <a href="javascript:void(0)">切换主题</a>
+        <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">切换主题</a>
       </li>
       <li>
-        <a href="javascript:void(0)">切换主题</a>
+        <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">切换主题</a>
       </li>
 
     </ul>
@@ -19,17 +19,30 @@
     data(){
         return {}
     },
-    props:['btnShowStatus'],
+    props:['btnShowStatus','themeShowStatus'],
     watch:{
 
-      btnShowStatus:function(e){
+      btnShowStatus : function(){
+        this.menuEffect()
+      },
+      themeShowStatus:function(){
+        this.menuEffect()
+      }
+
+    },
+    methods:{
+      changeTheme() {
+        this.$emit('changeTheme')
+      },
+      menuEffect(){
         var i= 0,
             j= document.querySelectorAll(".mainMenu li").length || 0,
             k,
             timer
 
         if(this.btnShowStatus){
-           timer = setInterval(function(){
+          this.clearClass()
+          timer = setInterval(function(){
             if(i<j){
               document.querySelectorAll(".mainMenu li")[i].setAttribute('class','delayshow')
               i++
@@ -38,18 +51,15 @@
               clearInterval(timer)
             }
           },150)
-        }else{
-            for(k=0;k<j;k++){
-              document.querySelectorAll(".mainMenu li")[k].removeAttribute('class')
-            }
-
+        }else {
+          this.clearClass()
         }
-      }
-
-    },
-    methods:{
-      changeTheme() {
-        this.$emit('changeTheme')
+      },
+      clearClass(){
+        var j= document.querySelectorAll(".mainMenu li").length || 0
+        for(var k=0;k<j;k++){
+          document.querySelectorAll(".mainMenu li")[k].removeAttribute('class')
+        }
       }
     }
   }
@@ -71,7 +81,6 @@
           display: inline-block;
           width:100%;
           height:60px;
-          background: #00b0fc;
           border-radius:5px;
           line-height: 60px;
           text-align: center;

@@ -1,17 +1,15 @@
 
 const options = {
 
-  position:'top-left',
-  duration:3000,
-  type:'success',
+  position:'top-center',
+  duration:1000,
+  // type:'success',
   fullWidth:true,
   theme:'primary',
-  singleton:true
+  singleton:true,
+  className:'mytoast'
 
 }
-
-
-
 
 
 export default {

@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <div id="app" :class="['c'+getTheme]">
     <app-header @controls="menuStatusChange()">loading...</app-header>
     <div class="appBody">
       <div :class="['leftContent',{showContent: showtabs}]">
-        <app-sidebar :btnShowStatus="showtabs" @changeTheme ="getTheme()" v-show="!showTheme">loading...</app-sidebar>
-        <app-theme v-show="showTheme">loading...</app-theme>
+        <app-sidebar :btnShowStatus="showtabs" :themeShowStatus="showTheme" @changeTheme ="getThemeBlock()" v-show="!showTheme">loading...</app-sidebar>
+        <app-theme v-show="showTheme" @closeTheme="getCloseTheme()">loading...</app-theme>
       </div>
       <div class="rightContent">
         <app-content>loading...</app-content>
@@ -29,28 +29,35 @@ export default {
   data(){
     return{
       showtabs:false,
-      showTheme:false
+      showTheme:false,
     }
   },
-
   methods:{
     menuStatusChange(){
         this.showtabs = !this.showtabs
     },
-    getTheme(){
+    getThemeBlock(){
       this.showTheme = true
+    },
+    getCloseTheme(e){
+      this.showTheme = !this.showTheme
+    }
+  },
+  computed:{
+    getTheme(){
+      return this.$store.getters.getCurrentTheme
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
   *{
     padding:0;
     margin:0;
   }
   .defaultColor{
-    background: #00b0fc;
+    /*background: #00b0fc;*/
   }
   ul,li,a{list-style: none;text-decoration: none}
 
@@ -74,5 +81,10 @@ export default {
       flex-grow: 1;
     }
 
+
+
+
   }
 </style>
+
+<style lang="scss" rel="stylesheet/scss" src="../static/css/theme.scss"></style>    <!--主题样式-->

@@ -6,6 +6,8 @@ import router from './router'
 import Toasted from 'vue-toasted'
 import toastOptions from './toastOptions'
 import Vuex from 'vuex'
+import store from './store/index';
+
 
 Vue.config.productionTip = false
 
@@ -16,6 +18,7 @@ Vue.use(Vuex)
 new Vue({
   el: '#app',
   router,
+  store:store,
   components: { App },
   template: '<App/>'
 })
