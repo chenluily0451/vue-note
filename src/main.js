@@ -3,10 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import Toasted from 'vue-toasted'
+import toastOptions from './toastOptions'
+import Vuex from 'vuex'
 
 Vue.config.productionTip = false
 
-/* eslint-disable no-new */
+Vue.use(Toasted,toastOptions.options)
+
+Vue.use(Vuex)
+
 new Vue({
   el: '#app',
   router,
