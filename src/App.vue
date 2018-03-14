@@ -18,17 +18,18 @@
   import AppSidebar from './components/AppSidebar.vue'
   import AppContent from './components/AppContent.vue'
   import AppTheme from './components/AppTheme.vue'
+
 export default {
   name: 'App',
   components:{
     AppHeader,
     AppSidebar,
     AppContent,
-    AppTheme
+    AppTheme,
   },
   data(){
     return{
-      showtabs:false,
+      showtabs:true,
       showTheme:false,
     }
   },

@@ -33,7 +33,6 @@
       changeTheme(color){
         this.$store.dispatch('change_theme',color)
         this.$emit('closeTheme')
-        console.log(localStorage)
         setTimeout(() => {
           this.$toasted.show('主题设置为 '+color)
         },500)

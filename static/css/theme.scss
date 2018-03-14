@@ -7,7 +7,7 @@ $theme5:#202020;
 $theme6:#5fdb54;
 
 @mixin theme($bgColor){
-  header,.menuTabbar{
+  header,.menuTabbar,.eventAdd .addBtn,.selectbar,.eventBtn{
     background: $bgColor;
   }
 }

@@ -2,33 +2,32 @@
   <div class="sidebar">
     <ul class="mainMenu">
       <li>
-        <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">切换主题</a>
+        <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">主题选择</a>
       </li>
       <li>
-        <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">切换主题</a>
+        <a href="javascript:void(0)" @click="clearLocalData()" class="menuTabbar">清空数据</a>
       </li>
-      <li>
-        <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">切换主题</a>
-      </li>
-
     </ul>
   </div>
 </template>
 <script>
+  import ls from '../store/storage.js';
   export default {
     data(){
         return {}
     },
+    mounted(){
+      this.btnShowStatus = true
+      this.menuEffect()
+    },
     props:['btnShowStatus','themeShowStatus'],
     watch:{
-
       btnShowStatus : function(){
         this.menuEffect()
       },
       themeShowStatus:function(){
         this.menuEffect()
       }
-
     },
     methods:{
       changeTheme() {
@@ -50,7 +49,7 @@
               i=0
               clearInterval(timer)
             }
-          },150)
+          },200)
         }else {
           this.clearClass()
         }
@@ -60,6 +59,12 @@
         for(var k=0;k<j;k++){
           document.querySelectorAll(".mainMenu li")[k].removeAttribute('class')
         }
+      },
+      clearLocalData(){
+        ls.ls_theme.clear()
+        setTimeout(() => {
+          this.$toasted.show('本地数据已清空')
+        },500)
       }
     }
   }
