@@ -14,7 +14,9 @@
     methods:{
       addEventList(){
         if(this.inputText !==''){
-            this.$emit('inputData',this.inputText)
+          this.$emit('inputData',this.inputText)
+          this.inputText = ''
+          this.$toasted.show('添加成功')
         }
       }
     }

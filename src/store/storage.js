@@ -9,10 +9,17 @@ const localData = function(item){
     return localStorage.getItem(item)
   }
   this.clear = function(){
-    return localStorage.removeItem(item)
+    return localStorage.clear()
   }
 }
-var ls_theme = new localData('ls_theme')
+var ls_theme = new localData('ls_theme'),
+    ls_todo = new localData('ls_todo'),
+    ls_completed = new localData('ls_completed'),
+    ls_deleted = new localData('ls_deleted')
+
 export default {
-  ls_theme
+  ls_theme,
+  ls_todo,
+  ls_completed,
+  ls_deleted
 }

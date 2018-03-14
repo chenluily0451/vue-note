@@ -53,6 +53,9 @@ export default {
 </script>
 
 <style lang="scss" rel="stylesheet/scss">
+  body,html{
+    min-width: 1200px;
+  }
   *{
     padding:0;
     margin:0;

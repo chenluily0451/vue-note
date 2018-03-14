@@ -4,7 +4,7 @@
 import ls from '../storage.js';
 const moduleTheme = {
   state:{
-    theme:ls.ls_theme.get() || '00b0fc'
+    theme:ls.ls_theme.get() || '202020'
   },
   getters:{
     getCurrentTheme(state){

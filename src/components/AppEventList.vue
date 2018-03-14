@@ -1,8 +1,8 @@
 <template>
   <div class="eventList">
     <template v-for="(st,idx) in data">
-      <div class="selectbar" @click="toggleMenu"><p>{{st.status}}({{st.sublists.length}})</p><span></span></div>
-      <ul class="list">
+      <div class="selectbar" @click="toggleMenu(idx)"><p>{{st.status}}({{st.sublists.length}})</p><span :class="{arrowRotate:!st.listShowStatus}"></span></div>
+      <ul :class="['list',{hideList:!st.listShowStatus}]">
         <li v-for="(l,index) in st.sublists">
           <p>{{l.text}}</p>
           <a href="javascript:void(0)" class="eventBtn" @click=clickEvent(st.statusCode,index,idx)>{{st.btnText}}</a>
@@ -12,7 +12,14 @@
   </div>
 </template>
 <script>
+  import ls from '../store/storage.js'
   export default {
+    mounted(){
+      this.data[0].sublists = JSON.parse(ls.ls_todo.get()) || []
+      this.data[1].sublists = JSON.parse(ls.ls_completed.get()) || []
+      this.data[2].sublists = JSON.parse(ls.ls_deleted.get()) || []
+      console.log(localStorage)
+    },
     data(){
       return {
         data:[
@@ -20,35 +27,25 @@
             status:'未完成',
             statusCode:1,
             showSubmenus:true,
-            sublists:[
-              {
-                text:'1111111111111'
-              }
-            ],
-            btnText:'完成'
+            sublists:[],
+            btnText:'完成',
+            listShowStatus:true
           },
           {
             status:'已完成',
             statusCode:2,
             showSubmenus:true,
-            sublists:[
-              {
-                text:'222222222222'
-              }
-            ],
-            btnText:'删除'
+            sublists:[],
+            btnText:'删除',
+            listShowStatus:true
           },
           {
             status:'已删除',
             statusCode:3,
             showSubmenus:true,
-            sublists:[
-              {
-                text:'333333333333'
-
-              }
-            ],
-            btnText:'还原'
+            sublists:[],
+            btnText:'还原',
+            listShowStatus:true
           }
         ]
       }
@@ -58,7 +55,10 @@
 
       //添加至未完成列表
       unCompletedText:function(msg){
-        this.data[0].sublists.push({text:msg})
+        let sl = this.data[0].sublists
+        sl.push({text:msg})
+        ls.ls_todo.set(JSON.stringify(sl))
+        console.log(localStorage)
       }
 
     },
@@ -67,17 +67,28 @@
         if(statusCode ===1){
           this.data[1].sublists.push(this.data[0].sublists[index])
           this.data[0].sublists.splice(index, 1)
+
+          ls.ls_todo.set(JSON.stringify(this.data[0].sublists))
+          ls.ls_completed.set(JSON.stringify(this.data[1].sublists))
+
         } else if(statusCode ===2){
           this.data[2].sublists.push(this.data[1].sublists[index])
           this.data[1].sublists.splice(index, 1)
+
+          ls.ls_completed.set(JSON.stringify(this.data[1].sublists))
+          ls.ls_deleted.set(JSON.stringify(this.data[2].sublists))
         } else{
           this.data[1].sublists.push(this.data[2].sublists[index])
           this.data[2].sublists.splice(index, 1)
+
+          ls.ls_completed.set(JSON.stringify(this.data[1].sublists))
+          ls.ls_deleted.set(JSON.stringify(this.data[2].sublists))
         }
         this.$toasted.show('已'+ this.data[idx].btnText)
+        console.log(localStorage)
       },
-      toggleMenu(){
-
+      toggleMenu(idx){
+        this.data[idx].listShowStatus = !this.data[idx].listShowStatus
       }
     }
   }
@@ -94,6 +105,7 @@
       border-radius: 4px;
       color: #fff;
       position: relative;
+      cursor: pointer;
 
       p{
         padding-left:10px;
@@ -102,17 +114,23 @@
       span{
         position: absolute;
         right: 20px;
-        top: 20px;
+        top: 23px;
         width: 10px;
         height: 10px;
         border-top: 2px solid #fff;
         border-right: 2px solid #fff;
         transform: rotate(135deg);
         transition: transform .3s;
+
+        &.arrowRotate{
+          transform: rotate(45deg);
+        }
       }
     }
     .list{
       width:100%;
+      overflow: hidden;
+      transition: height ease-in-out .3s;
 
       li{
         background: #fff;
@@ -144,6 +162,9 @@
           }
         }
       }
+    }
+    .hideList{
+      height:0;
     }
   }
 </style>
