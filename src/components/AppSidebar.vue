@@ -62,9 +62,10 @@
       },
       clearLocalData(){
         ls.ls_theme.clear()
+        this.$toasted.show('本地数据已清空')
         setTimeout(() => {
-          this.$toasted.show('本地数据已清空')
-        },500)
+          location.reload()
+        },1000)
       }
     }
   }

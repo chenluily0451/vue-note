@@ -74,12 +74,13 @@ export default {
     width:100%;
 
     .leftContent{
-      width:0vw;
+      width:0;
       transition: all ease-in .3s;
       background: rgba(0,0,0,0.5);
     }
     .showContent{
       width:20vw;
+      flex-shrink: 0;
     }
     .rightContent{
       flex-grow: 1;

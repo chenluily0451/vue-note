@@ -12,14 +12,27 @@ const localData = function(item){
     return localStorage.clear()
   }
 }
-var ls_theme = new localData('ls_theme'),
+const ls_theme = new localData('ls_theme'),
     ls_todo = new localData('ls_todo'),
     ls_completed = new localData('ls_completed'),
     ls_deleted = new localData('ls_deleted')
+
+const getLocalTime = function(){
+  let time = new Date(),
+      year = time.getFullYear(),
+      month = parseInt(time.getMonth())+1,
+      day = time.getDate(),
+      hour = time.getHours(),
+      minute = time.getMinutes(),
+      second = time.getSeconds()
+
+  return year + '/' + month + '/' + day + ' ' + hour + ':' + minute + ':' + second
+}
 
 export default {
   ls_theme,
   ls_todo,
   ls_completed,
-  ls_deleted
+  ls_deleted,
+  getLocalTime
 }

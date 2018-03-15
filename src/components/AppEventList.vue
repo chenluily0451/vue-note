@@ -4,7 +4,10 @@
       <div class="selectbar" @click="toggleMenu(idx)"><p>{{st.status}}({{st.sublists.length}})</p><span :class="{arrowRotate:!st.listShowStatus}"></span></div>
       <ul :class="['list',{hideList:!st.listShowStatus}]">
         <li v-for="(l,index) in st.sublists">
-          <p>{{l.text}}</p>
+          <div>
+            <p>{{l.text}}</p>
+            <span>{{l.time}}</span>
+          </div>
           <a href="javascript:void(0)" class="eventBtn" @click=clickEvent(st.statusCode,index,idx)>{{st.btnText}}</a>
         </li>
       </ul>
@@ -56,7 +59,7 @@
       //添加至未完成列表
       unCompletedText:function(msg){
         let sl = this.data[0].sublists
-        sl.push({text:msg})
+        sl.push({text:msg, time:ls.getLocalTime()})
         ls.ls_todo.set(JSON.stringify(sl))
         console.log(localStorage)
       }
@@ -70,6 +73,7 @@
 
           ls.ls_todo.set(JSON.stringify(this.data[0].sublists))
           ls.ls_completed.set(JSON.stringify(this.data[1].sublists))
+
 
         } else if(statusCode ===2){
           this.data[2].sublists.push(this.data[1].sublists[index])
@@ -142,9 +146,25 @@
         flex-direction: row;
         align-items: center;
 
-        p{
-          flex-grow: 1;
-          word-break: break-all;
+        div{
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          p{
+            flex-grow: 1;
+            word-break: break-all;
+            padding-right: 10px;
+
+          }
+          span{
+            display: inline-block;
+            width:200px;
+            color: #999;
+            font-size: 18px;
+            flex-shrink: 0;
+          }
         }
         a{
           margin-left: 10px;
