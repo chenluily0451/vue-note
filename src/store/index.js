@@ -6,10 +6,12 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import theme from './theme/index.js';
+import avatar from './avatar/index.js';
 
 
 export default new Vuex.Store({
   modules:{
-    theme:theme.moduleTheme
+    theme:theme.moduleTheme,
+    avatar:avatar.moduleAvatar
   }
 })

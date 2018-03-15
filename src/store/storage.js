@@ -13,9 +13,11 @@ const localData = function(item){
   }
 }
 const ls_theme = new localData('ls_theme'),
-    ls_todo = new localData('ls_todo'),
-    ls_completed = new localData('ls_completed'),
-    ls_deleted = new localData('ls_deleted')
+      ls_todo = new localData('ls_todo'),
+      ls_completed = new localData('ls_completed'),
+      ls_deleted = new localData('ls_deleted')
+
+const ls_avatar = new localData('ls_avatar')
 
 const getLocalTime = function(){
   let time = new Date(),
@@ -34,5 +36,6 @@ export default {
   ls_todo,
   ls_completed,
   ls_deleted,
+  ls_avatar,
   getLocalTime
 }

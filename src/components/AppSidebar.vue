@@ -2,6 +2,11 @@
   <div class="sidebar">
     <ul class="mainMenu">
       <li>
+        <a href="javascript:void(0)" @click="uploadAvatar()" class="menuTabbar">上传头像</a>
+        <input type="file" id="inputFile" accept="image/*"  @change ="fileChange()">
+      </li>
+
+      <li>
         <a href="javascript:void(0)" @click="changeTheme()" class="menuTabbar">主题选择</a>
       </li>
       <li>
@@ -66,7 +71,39 @@
         setTimeout(() => {
           location.reload()
         },1000)
+      },
+      uploadAvatar(){
+          document.getElementById('inputFile').click()
+      },
+      fileChange(e){
+        this.showPreview(e)
+      },
+      showPreview(source){
+
+        let file = document.getElementById('inputFile').files[0],
+            that = this
+        if(window.FileReader){
+          let fr = new FileReader()
+          fr.onloadend = function(e){
+            that.$store.dispatch('change_avatarStatus')
+            that.$store.dispatch('change_avatar',e.target.result)
+            ls.ls_avatar.set(e.target.result)
+            that.$toasted.show('上传成功')
+            console.log(that.$store)
+          }
+          fr.onprogress = function(){
+            if(file.size/1024/1024 > 1){
+              that.$toasted.show('上传文件不能超过1M')
+              return false
+            }
+              that.$toasted.show('上传中...')
+          }
+          fr.readAsDataURL(file);
+        }else{
+            this.$toasted.show('你的浏览器版本太低，暂不支持上传')
+        }
       }
+
     }
   }
 </script>
@@ -82,6 +119,7 @@
         transition: all ease .3s;
         opacity: 0;
         overflow: hidden;
+        input{display: none;}
         a{
           display: inline-block;
           width:100%;
