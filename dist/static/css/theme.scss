@@ -1,0 +1,56 @@
+
+$theme1:#f39894;
+$theme2:#609dee;
+$theme3:#26b6be;
+$theme4:#f4b976;
+$theme5:#202020;
+$theme6:#5fdb54;
+
+@mixin theme($bgColor){
+  header,.menuTabbar,.eventAdd .addBtn,.selectbar,.eventBtn{
+    background: $bgColor;
+  }
+}
+
+//主题一
+.cf39894{
+  @include theme($theme1);
+}
+
+//主题二
+.c609dee{
+  @include theme($theme2)
+}
+
+//主题三
+.c26b6be{
+  @include theme($theme3)
+}
+
+//主题四
+.cf4b976{
+  @include theme($theme4)
+}
+
+//主题五
+.c202020{
+  @include theme($theme5)
+}
+
+//主题六
+.c5fdb54{
+  @include theme($theme6)
+}
+
+
+//modal
+.toasted-container.top-center{
+  width:40%;
+  top:50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.toasted-container .mytoast{
+  font-size: 24px;
+  padding:20px;
+}
