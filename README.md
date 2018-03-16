@@ -1,30 +1,31 @@
 # mynote
 
-> A Vue.js project
+> 日程笔记本功能实现
 
-## Build Setup
+> 访问地址 https://chenluily0451.github.io/vue-note/dist/
+
+## 涉及
 
 ``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
+  vue
+  vuex
+  localstorage
+  filereader
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 记录
+
+``` bash
+  localstorage存储值的json转化问题，
+  filereader的几种状态
+  input节流方法
+  scss mixin及include用法
+  assetsPublicPath路径配置
+```
+
+## 问题
+
+``` bash
+  组件间通过watch监听store.state值变化时无法执行document.getElementBy('xx').click()类似操作，
+  但是可以在控制台里执行。
+```
