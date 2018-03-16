@@ -1,6 +1,6 @@
 <template>
   <div class="eventAdd">
-    <input type="text" placeholder="请添加事项" v-model="inputText">
+    <input type="text" placeholder="请添加事项" v-model.trim="inputText" @keyup.enter="addEventList()">
     <a href="javascript:void(0)" class="addBtn" @click="addEventList()">添加</a>
   </div>
 </template>

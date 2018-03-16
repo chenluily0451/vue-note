@@ -2,6 +2,9 @@
   <div class="sidebar">
     <ul class="mainMenu">
       <li>
+        <a href="javascript:void(0)" class="menuTabbar" @click="editTitle()" >编辑标题</a>
+      </li>
+      <li>
         <a href="javascript:void(0)" @click="uploadAvatar()" class="menuTabbar">上传头像</a>
         <input type="file" id="inputFile" accept="image/*"  @change ="fileChange()">
       </li>
@@ -83,25 +86,30 @@
         let file = document.getElementById('inputFile').files[0],
             that = this
         if(window.FileReader){
-          let fr = new FileReader()
-          fr.onloadend = function(e){
-            that.$store.dispatch('change_avatarStatus')
-            that.$store.dispatch('change_avatar',e.target.result)
-            ls.ls_avatar.set(e.target.result)
-            that.$toasted.show('上传成功')
-            console.log(that.$store)
-          }
-          fr.onprogress = function(){
-            if(file.size/1024/1024 > 1){
-              that.$toasted.show('上传文件不能超过1M')
-              return false
+            if(file){
+              let fr = new FileReader()
+              fr.onloadend = function(e){
+                if(file.size/1024/1024 > 1){
+                  that.$toasted.show('上传文件不能超过1M')
+                  return false
+                }
+                that.$store.dispatch('change_avatarStatus')
+                that.$store.dispatch('change_avatar',e.target.result)
+                ls.ls_avatar.set(e.target.result)
+                that.$toasted.show('上传成功')
+                console.log(that.$store)
+              }
+//          fr.onprogress = function(){
+//              that.$toasted.show('上传中...')
+//          }
+              fr.readAsDataURL(file);
             }
-              that.$toasted.show('上传中...')
-          }
-          fr.readAsDataURL(file);
         }else{
             this.$toasted.show('你的浏览器版本太低，暂不支持上传')
         }
+      },
+      editTitle(){
+          this.$emit('editTitle')
       }
 
     }

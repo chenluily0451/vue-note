@@ -18,12 +18,7 @@
       '$store.state.avatar.clickStatus' : function(){
         this.avatar = this.$store.state.avatar.avatar
       }
-    },
-    methods:{
-
-
     }
-
   }
 </script>
 <style lang="scss">
@@ -32,9 +27,8 @@
     justify-content: center;
 
     .imgWrap{
-      width:20%;
-      max-width:400px;
-      max-height: 300px;
+      width:150px;
+      height:150px;
       margin-bottom: 20px;
 
 

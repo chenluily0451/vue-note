@@ -4,9 +4,9 @@
       <li class="title">
         点击切换主题
       </li>
-      <li @click="changeTheme('00b0fc')">
-        <span class="c00b0fc"></span>
-        <b>#00b0fc</b>
+      <li @click="changeTheme('609dee')">
+        <span class="c609dee"></span>
+        <b>#609dee</b>
       </li>
       <li @click="changeTheme('f39894')">
         <span class="cf39894"></span>
@@ -77,8 +77,8 @@
           &.cf39894{
             background: #f39894;
           }
-          &.c00b0fc{
-            background: #00b0fc;
+          &.c609dee{
+            background: #609dee;
           }
           &.c26b6be{
             background: #26b6be;

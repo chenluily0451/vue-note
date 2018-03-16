@@ -1,10 +1,10 @@
 <template>
   <div id="app" :class="['c'+getTheme]">
-    <app-header @controls="menuStatusChange()">loading...</app-header>
+    <app-header @controls="menuStatusChange()" :editTitleStatus ="editTitleStatus">loading...</app-header>
     <div class="appBody">
       <div :class="['leftContent',{showContent: showtabs}]">
-        <app-sidebar :btnShowStatus="showtabs" :themeShowStatus="showTheme" @changeTheme ="getThemeBlock()" v-show="!showTheme">loading...</app-sidebar>
-        <app-theme v-show="showTheme" @closeTheme="getCloseTheme()">loading...</app-theme>
+        <app-sidebar :btnShowStatus="showtabs" :themeShowStatus="showTheme" @changeTheme ="getThemeBlock()" @editTitle="changeTitle()" v-show="!showTheme">loading...</app-sidebar>
+        <app-theme v-show="showTheme" @closeTheme="getCloseTheme()" >loading...</app-theme>
       </div>
       <div class="rightContent">
         <app-content>loading...</app-content>
@@ -32,6 +32,7 @@ export default {
     return{
       showtabs:true,
       showTheme:false,
+      editTitleStatus:false
     }
   },
   methods:{
@@ -43,6 +44,9 @@ export default {
     },
     getCloseTheme(e){
       this.showTheme = !this.showTheme
+    },
+    changeTitle(title){
+      this.editTitleStatus = !this.editTitleStatus
     }
   },
   computed:{

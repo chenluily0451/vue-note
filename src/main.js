@@ -7,7 +7,7 @@ import Toasted from 'vue-toasted'
 import toastOptions from './toastOptions'
 import Vuex from 'vuex'
 import store from './store/index';
-
+import lodash from 'lodash'
 
 Vue.config.productionTip = false
 
