@@ -6,7 +6,7 @@ import ls from '../storage.js';
 const moduleAvatar = {
   state:{
     clickStatus:false,
-    avatar:ls.ls_avatar.get() || '../../static/image/avatar.png'
+    avatar:ls.ls_avatar.get() || './static/image/avatar.png'
   },
   getters:{
     getAvatar(state){
