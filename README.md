@@ -28,7 +28,8 @@
 ## 问题
 
 ``` bash
-  组件间通过watch监听store.state值变化时无法执行document.getElementBy('xx').click()类似操作，
+  1.组件间通过watch监听store.state值变化时无法执行document.getElementBy('xx').click()类似操作，
   但是可以在控制台里执行。
-  vw单位在flex布局里失效
+  
+  2.vw单位在flex布局里失效
 ```
