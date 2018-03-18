@@ -13,7 +13,7 @@
     data(){
         return{
           readOnlyStatus:true,
-          inputText : ls.ls_noteTitle.get('ls_noteTitle') || ''
+          inputText : ls.ls_noteTitle.get('ls_noteTitle') || '未命名'
         }
     },
     props:['editTitleStatus'],
